@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Me perdonas?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #fce4ec;
+            background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.es%2Ffotos-vectores-gratis%2Ffondos-pantalla-hello-kitty&psig=AOvVaw3wEDdquF0JIeafg1rynPuT&ust=1724207116633000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMiN5pfCgogDFQAAAAAdAAAAABAE'); /* Cambia esta URL a una imagen de fondo de Hello Kitty */
+            background-size: cover;
+            color: #333;
+        }
+        h1 {
+            color: #d81b60;
+            font-size: 36px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #f06292;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #ec407a;
+        }
+        #si {
+            transition: all 0.3s ease;
+        }
+        .hidden {
+            display: none;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .heart {
+            color: red;
+            font-size: 24px;
+            margin: 10px;
+        }
+        .kuromi {
+            width: 100px;
+            height: 100px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>¿Me perdonas? <span class="heart">❤️</span></h1>
+    <img src="https://th.bing.com/th/id/OIP.RFX4EF9Bcer6K-y_fon7QgHaHk?rs=1&pid=ImgDetMain" alt="Kuromi" class="kuromi"> <!-- Cambia esta URL a una imagen de Kuromi -->
+    <button id="si" onclick="respuesta('si')">Sí</button>
+    <button id="no" onclick="respuesta('no')">No</button>
+
+    <div id="opciones-adicionales" class="hidden">
+        <p class="message">¿Estás segura que no me perdonas? <span class="heart">❤️</span></p>
+        <button onclick="respuestaSegundaOpcion('no')">Sí</button>
+        <button onclick="respuestaSegundaOpcion('si')">No</button>
+    </div>
+
+    <div id="segundo-intento" class="hidden">
+        <p class="message">Pero me pondré muy triste 😢, entonces... ¿Me perdonas? <span class="heart">❤️</span></p>
+        <button onclick="mostrarMensaje('si')">Sí</button>
+        <button onclick="mostrarMensaje('no')">No</button>
+    </div>
+
+    <div id="resultado" class="message"></div>
+
+    <script>
+        let siButton = document.getElementById('si');
+        let siButtonSize = 18;
+
+        function respuesta(opcion) {
+            if (opcion === 'si') {
+                document.getElementById('resultado').textContent = 'Gracias!!, Te llevaré helado 🍦';
+                document.getElementById('resultado').style.color = '#d81b60';
+                document.getElementById('opciones-adicionales').classList.add('hidden');
+                document.getElementById('segundo-intento').classList.add('hidden');
+            } else if (opcion === 'no') {
+                // Agrandar el botón de "Sí"
+                siButtonSize += 10;
+                siButton.style.fontSize = siButtonSize + 'px';
+                siButton.style.padding = (siButtonSize / 2) + 'px ' + siButtonSize + 'px';
+
+                // Mostrar opciones adicionales
+                document.getElementById('opciones-adicionales').classList.remove('hidden');
+                document.getElementById('resultado').textContent = '';
+                document.getElementById('segundo-intento').classList.add('hidden');
+            }
+        }
+
+        function respuestaSegundaOpcion(opcion) {
+            if (opcion === 'si') {
+                document.getElementById('resultado').textContent = 'Te llevaré fresas con crema ❤️🥰';
+                document.getElementById('resultado').style.color = '#d81b60';
+                document.getElementById('opciones-adicionales').classList.add('hidden');
+                document.getElementById('segundo-intento').classList.add('hidden');
+            } else if (opcion === 'no') {
+                document.getElementById('segundo-intento').classList.remove('hidden');
+                document.getElementById('opciones-adicionales').classList.add('hidden');
+                document.getElementById('resultado').textContent = '';
+            }
+        }
+
+        function mostrarMensaje(opcion) {
+            if (opcion === 'si') {
+                document.getElementById('resultado').textContent = '¡Gracias! ¡Te quiero! 🥰';
+                document.getElementById('resultado').style.color = '#d81b60';
+            } else if (opcion === 'no') {
+                document.getElementById('resultado').textContent = 'No seas malita, perdóname ya :c';
+                document.getElementById('resultado').style.color = '#d32f2f';
+            }
+            document.getElementById('segundo-intento').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
+
+
+
